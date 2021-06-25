@@ -18,3 +18,17 @@
     color: blue;
     font-weight: 500;
 }
+
+.productDetails{
+    margin-bottom: 10px;
+}
+
+.addToCartBtn{
+    background-color: goldenrod;
+    width: 150px;
+    height: 30px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
