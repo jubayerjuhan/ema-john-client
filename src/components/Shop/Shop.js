@@ -3,8 +3,6 @@ import fakeData from '../../fakeData'
 import './Shop.css'
 import Product from '../Products/Product'
 import Cart from "./../Cart/Cart";
-import Header from "./../Header/Header";
-
 
 const Shop = () => {
     
@@ -35,7 +33,7 @@ const Shop = () => {
             </div>
 
             <div className="cartContainer">
-                <Cart></Cart>
+                <Cart cart = {cart}></Cart>
             </div>
             
         </div>
