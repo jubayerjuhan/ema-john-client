@@ -33,6 +33,7 @@ const Shop = () => {
                 {
                     products.map(pds =>
                         <Product
+                            key = {pds.key}
                             handleAddProduct={handleAddProduct}
                             showAddToCart = {true}
                             productss={pds}>
