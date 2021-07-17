@@ -5,6 +5,7 @@ import Review from './components/Cart/Review/Review.js';
 import Inventory from './components/Inventory/Inventory.js';
 import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
+import OrderSuccess from './components/OrderSuccess/OrderSuccess.js';
 
 function App() {
 
@@ -45,9 +46,15 @@ function App() {
 						<ProductDetail></ProductDetail>
 					</Route>
 
+					<Route path="/order-success">
+						<OrderSuccess></OrderSuccess>
+					</Route>
+
 					<Route path="*">
 						<NoMatch></NoMatch>
 					</Route>
+
+					
 
 				</Switch>
 
