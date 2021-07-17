@@ -3,6 +3,7 @@ import { getDatabaseCart, removeFromDatabaseCart } from '../../../utilities/data
 import fakeData from "./../../../fakeData/index";
 import ReviewCartItem from "./../../ReviewCartItem/ReviewCartItem";
 import Cart from "./../Cart";
+
 const Review = () => {
 
     const [cart, setCart] = useState([]);
@@ -14,7 +15,6 @@ const Review = () => {
         removeFromDatabaseCart(removedProductKey);
     }
     
-
     useEffect(() => {
         const savedCart = getDatabaseCart();
         const productKeys = Object.keys(savedCart)
@@ -41,7 +41,9 @@ const Review = () => {
                 </div>
 
                 <div className="cartContainer">
-                    <Cart cart = {cart}></Cart>
+                    <Cart cart = {cart}>
+                        <button className="reviewCart">Place Order</button>
+                    </Cart>
                 </div>
             </div>
         </>

@@ -65,14 +65,8 @@ const Cart = (props) => {
                 <p>Total Before Tax: ${priceBeforeTax}</p>
                 <h4>Order Total: ${orderTotal}</h4>
             </div>
-
-            <Link to="/review" >
-                <button className="reviewCart" href="/review">
-                    <FontAwesomeIcon icon={faSearchDollar} />
-                    Review Order
-                </button>
-            </Link>
-
+            {props.children}
+            
 
         </div>
     );
