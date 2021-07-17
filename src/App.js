@@ -3,7 +3,7 @@ import Header from './components/Header/Header';
 import Shop from './components/Shop/Shop';
 import Review from './components/Cart/Review/Review.js';
 import Inventory from './components/Inventory/Inventory.js';
-import { BrowserRouter as Router, Switch, Route, Link, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 
 function App() {

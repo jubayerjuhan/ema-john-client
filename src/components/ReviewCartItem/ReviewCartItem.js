@@ -2,20 +2,28 @@ import React from 'react';
 
 const ReviewCartItem = (props) => {
     const product = props.cartproduct;
+    const { name, price, quantity, key, img} = product;
 
-    const {key, name, price, quantity,seller, img} = product;
+    const reviewItemStyle = {
+        borderBottom: '1px solid lightgray',
+        marginBottom: '5px',
+        paddingBottom: '5px',
+        marginLeft: '200px'
+    }
 
+    console.log(product)
     return (
-        <div className='product'>
+        <div style={reviewItemStyle} className='product'>
             <div className='productsImage'>
                 <img src={img} alt="" srcset="" />
             </div>
 
             <div className='productDetails'>
+                
                 <h4 className='productName'>{name}</h4>
                 <p>Price: {price}</p>
                 <p>Ordered: {quantity} Piece/s</p>
-                <button className="remove-btn addToCartBtn">
+                <button onClick ={()=>props.handleRemoveProduct(key)} className="remove-btn addToCartBtn">
                     Remove
                 </button>
             </div>

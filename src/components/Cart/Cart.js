@@ -1,8 +1,8 @@
 import React from 'react'
 import './Cart.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fas, faSearchDollar } from '@fortawesome/free-solid-svg-icons'
-import { BrowseRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { faSearchDollar } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom';
 
 const Cart = (props) => {
     const cart = props.cart;
@@ -20,7 +20,8 @@ const Cart = (props) => {
     let total = 0;
     for (let i = 0; i < cart.length; i++) {
         const product = cart[i];
-        total = total + product.price;
+        total = total + product.price * product.quantity;
+        // debugger;
     }
     const totalFixed = total.toFixed(2)
 
@@ -32,7 +33,7 @@ const Cart = (props) => {
         const product = cart[i];
         shippingCost = shippingCost + product.shipping
     }
-    console.log(shippingCost)
+    // console.log(shippingCost)
 
     /**
      * !Shipping And Price
@@ -45,7 +46,7 @@ const Cart = (props) => {
      * !Tax Calculating
      */
     const tax = priceBeforeTax / 100 * 10
-    console.log(tax)
+    // console.log(tax)
 
 
     /**

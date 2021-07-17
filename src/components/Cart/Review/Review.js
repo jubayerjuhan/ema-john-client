@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { getDatabaseCart } from '../../../utilities/databaseManager.js';
+import { getDatabaseCart, removeFromDatabaseCart } from '../../../utilities/databaseManager.js';
 import fakeData from "./../../../fakeData/index";
 import ReviewCartItem from "./../../ReviewCartItem/ReviewCartItem";
-
+import Cart from "./../Cart";
 const Review = () => {
 
     const [cart, setCart] = useState([]);
+
+    const handleRemoveProduct = (removedProductKey) => {
+        const newCart = cart.filter(pd => pd.key !== removedProductKey)
+        setCart(newCart);
+
+        removeFromDatabaseCart(removedProductKey);
+    }
+    
 
     useEffect(() => {
         const savedCart = getDatabaseCart();
@@ -18,17 +26,25 @@ const Review = () => {
         });
 
         setCart(cartProducts);
-        console.log(cart);
+        console.log(savedCart);
     }, [])
 
 
     return (
-        <div>
-            <h1>Placeholders For Review Path</h1>
-            {
-                cart.map(cartProduct => <ReviewCartItem cartproduct = {cartProduct}></ReviewCartItem>)
-            }
-        </div>
+        <>
+            <h1>Review Cart Items</h1>
+            <div className="twinContainer">
+                <div className="productContainer">
+                    {
+                        cart.map(cartProduct => <ReviewCartItem handleRemoveProduct={handleRemoveProduct} key={cartProduct.key} cartproduct={cartProduct}></ReviewCartItem>)
+                    }
+                </div>
+
+                <div className="cartContainer">
+                    <Cart cart = {cart}></Cart>
+                </div>
+            </div>
+        </>
     );
 };
 
