@@ -1,8 +1,5 @@
 import React from 'react'
 import './Cart.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearchDollar } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom';
 
 const Cart = (props) => {
     const cart = props.cart;
