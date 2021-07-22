@@ -49,7 +49,7 @@ const Shop = () => {
             const otherProducts = cart.filter(pd => pd.key !== toBeadded)
             newCart = [...otherProducts, sameProduct]
         }
-        else{
+        else {
             product.quantity = 1;
             newCart = [...cart, product]
         }
@@ -85,9 +85,10 @@ const Shop = () => {
                     </Link>
                 </Cart>
             </div>
+            
 
         </div>
-    );
+            );
 };
 
-export default Shop;
+            export default Shop;
