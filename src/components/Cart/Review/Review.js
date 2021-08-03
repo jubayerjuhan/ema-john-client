@@ -3,13 +3,14 @@ import { getDatabaseCart, processOrder, removeFromDatabaseCart } from '../../../
 import fakeData from "./../../../fakeData/index";
 import ReviewCartItem from "./../../ReviewCartItem/ReviewCartItem";
 import Cart from "./../Cart";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import happyImage from '../../../images/giphy.gif'
 
 const Review = () => {
 
     const [cart, setCart] = useState([]);
     const [placeOrder, setPlaceOrder] = useState(false)
+    const history = useHistory();
 
     const handleRemoveProduct = (removedProductKey) => {
         const newCart = cart.filter(pd => pd.key !== removedProductKey)
@@ -28,16 +29,13 @@ const Review = () => {
 
 
     // // removing products
-    // const handlePlaceOrder = () => {
+    // const handleProceedCheckout = () => {
     //     keys.map((key) =>
     //         removeFromDatabaseCart(key)
     //     )
     // }
-    const handlePlaceOrder = () =>{
-
-        setCart([]);
-        processOrder(cart);
-        setPlaceOrder(true);
+    const handleProceedCheckout = () =>{
+        history.push("/shipment")
     }
 
     useEffect(() => {
@@ -49,7 +47,7 @@ const Review = () => {
             product.quantity = savedCart[key];
             return product;
         });
-
+        
         setCart(cartProducts);
         console.log(savedCart);
     }, [])
@@ -59,7 +57,6 @@ const Review = () => {
     if (placeOrder) {
         thankYou = <img src={happyImage} alt="" srcset="" />
     }
-
     return (
         <>
             <h1>Review Cart Items</h1>
@@ -74,7 +71,7 @@ const Review = () => {
                 <div className="cartContainer">
                     <Cart cart={cart}>
                         <Link>
-                            <button onClick={handlePlaceOrder} className="reviewCart">Place Order</button>
+                            <button onClick={handleProceedCheckout} className="reviewCart">Proceed Checkout</button>
                         </Link>
                     </Cart>
                 </div>

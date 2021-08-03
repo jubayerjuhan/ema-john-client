@@ -5,10 +5,15 @@ import Review from './components/Cart/Review/Review.js';
 import Inventory from './components/Inventory/Inventory.js';
 import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
-// import Lala from './components/ProductDetail/Lala.js';
+import Login from "./components/Login/Login";
+import Shipment from "./components/Shipment/Shipment";
+import { createContext, useState } from "react";
 
+export const UserContext= createContext();
 function App() {
-
+	
+	const [loggedInUser, setLoggedInUser] = useState({})
+	
 	const NoMatch = () => {
 		let location = useLocation();
 
@@ -20,7 +25,10 @@ function App() {
 	};
 
 	return (
-		<div className="App">
+		<UserContext.Provider value = {[loggedInUser, setLoggedInUser]}>
+			{console.log(loggedInUser)}
+			<p>Name: {loggedInUser.displayName}</p>
+			<p>Email: {loggedInUser.email}</p>
 			<Header></Header>
 
 			<Router>
@@ -42,6 +50,14 @@ function App() {
 						<Inventory></Inventory>
 					</Route>
 
+					<Route path="/login">
+						<Login></Login>
+					</Route>
+
+					<Route path="/shipment">
+						<Shipment></Shipment>
+					</Route>
+
 					<Route path = "/product/:productKey">
 						<ProductDetail></ProductDetail>
 					</Route>
@@ -54,7 +70,7 @@ function App() {
 				</Switch>
 
 			</Router>
-		</div>
+		</UserContext.Provider>
 	);
 }
 
