@@ -8,12 +8,13 @@ import ProductDetail from "./components/ProductDetail/ProductDetail";
 import Login from "./components/Login/Login";
 import Shipment from "./components/Shipment/Shipment";
 import { createContext, useState } from "react";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
-export const UserContext= createContext();
+export const UserContext = createContext();
 function App() {
-	
+
 	const [loggedInUser, setLoggedInUser] = useState({})
-	
+
 	const NoMatch = () => {
 		let location = useLocation();
 
@@ -25,13 +26,14 @@ function App() {
 	};
 
 	return (
-		<UserContext.Provider value = {[loggedInUser, setLoggedInUser]}>
+		<UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
 			{console.log(loggedInUser)}
-			<p>Name: {loggedInUser.displayName}</p>
 			<p>Email: {loggedInUser.email}</p>
-			<Header></Header>
+
 
 			<Router>
+				<Header></Header>
+				
 				<Switch>
 
 					<Route exact path="/">
@@ -46,19 +48,19 @@ function App() {
 						<Review></Review>
 					</Route>
 
-					<Route path="/manage-inverntory">
+					<PrivateRoute path="/manage-inverntory">
 						<Inventory></Inventory>
-					</Route>
+					</PrivateRoute>
 
 					<Route path="/login">
 						<Login></Login>
 					</Route>
 
-					<Route path="/shipment">
+					<PrivateRoute path="/shipment">
 						<Shipment></Shipment>
-					</Route>
+					</PrivateRoute>
 
-					<Route path = "/product/:productKey">
+					<Route path="/product/:productKey">
 						<ProductDetail></ProductDetail>
 					</Route>
 
@@ -66,7 +68,7 @@ function App() {
 						<NoMatch></NoMatch>
 					</Route>
 
-					
+
 				</Switch>
 
 			</Router>
